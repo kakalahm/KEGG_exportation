@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 
-with open("C:\LULU\KEGG\standard_html.txt", "r") as f:
+with open("KEGG_anno.txt", "r") as f:
     doc_txt = f.read().replace("\n", "")
 soup = BeautifulSoup(doc_txt,'lxml')
 level_groups = soup.find_all('b')
@@ -37,7 +37,7 @@ df2 = df.groupby(['level1','level2','level3']).count()
 df["genes"] += "; "
 df3 = df.groupby(['level1','level2','level3']).sum()
 df3['gene_counts'] = df2['genes']
-df3.to_csv("C:\LULU\KEGG\df3.csv",sep='\t')
+df3.to_csv("output.csv",sep='\t')
 
 
 
