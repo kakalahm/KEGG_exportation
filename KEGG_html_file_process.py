@@ -4,8 +4,9 @@ import pandas as pd
 with open("KEGG_anno.txt", "r") as f:
     doc_txt = f.read().replace("\n", "")
 soup = BeautifulSoup(doc_txt,'lxml')
+#读取html文件，其实不需要将空行替换掉，直接BeautifulSoup(open'KEGG_anno.txt','lxml')
 level_groups = soup.find_all('b')
-# print(level_groups)
+#找出所有level1对应的节点
 obser = {'level1':[],'level2':[],'level3':[],'genes':[]}
 for level1_group in level_groups:
     level1_name = level1_group.string.strip()
